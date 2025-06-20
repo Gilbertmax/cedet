@@ -9,7 +9,7 @@ import FormativeModelSection from './components/FormativeModelSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import ConferenciasSection from './components/BlogSection';
 import InvolucradosSection from './components/PartnersSection';
-import CTASection from './components/CTASection';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Talleres from './pages/Talleres';
@@ -29,7 +29,6 @@ function Home() {
       <TestimonialsSection />
       <ConferenciasSection />
       <InvolucradosSection />
-      <CTASection />
     </>
   );
 }

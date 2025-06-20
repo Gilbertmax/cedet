@@ -39,41 +39,10 @@ const InvolucradosSection = () => {
     }
   ];
 
-  const stats = [
-    { number: '92%', label: 'Egresados empleados' },
-    { number: '18', label: 'Certificaciones en CONTPAQi' },
-    { number: '10', label: 'Empresas socias' }
-  ];
-
   return (
     <section className="section">
       <div className="container">
         <h2 className="section-title">Nuestro Equipo</h2>
-        
-        {/* Cifras clave */}
-        <div className="grid grid-4" style={{ marginBottom: '4rem' }}>
-          {stats.map((stat, index) => (
-            <div key={index} className="card fade-in-up" style={{ 
-              textAlign: 'center',
-              animationDelay: `${index * 0.1}s`
-            }}>
-              <div style={{ 
-                fontSize: '3rem', 
-                fontWeight: '700',
-                color: 'var(--primary-teal)',
-                marginBottom: '0.5rem'
-              }}>
-                {stat.number}
-              </div>
-              <p style={{ 
-                color: 'var(--primary-dark)',
-                fontWeight: '600'
-              }}>
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
 
         {/* Diagrama organizacional */}
         <div className="organigrama">
@@ -176,17 +145,6 @@ const InvolucradosSection = () => {
             Nuestro equipo de expertos está comprometido con tu desarrollo profesional. 
             Cada miembro aporta años de experiencia y pasión por la formación contable.
           </p>
-          <button 
-            className="btn btn-primary"
-            onClick={() => {
-              const element = document.getElementById('contacto');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-          >
-            Solicitar reunión con el equipo
-          </button>
         </div>
 
         <style jsx>{`

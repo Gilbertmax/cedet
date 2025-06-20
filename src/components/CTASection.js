@@ -21,10 +21,41 @@ const CTASection = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para enviar el formulario
-    alert(`¡Gracias por tu interés! Nos pondremos en contacto contigo pronto.`);
+    
+    try {
+      const response = await fetch('http://localhost:5000/api/registro-estudiante', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        alert(result.message);
+        // Limpiar formulario
+        setFormData({
+          nombre: '',
+          email: '',
+          telefono: '',
+          universidad: '',
+          semestre: '',
+          empresa: '',
+          cargo: '',
+          sector: '',
+          mensaje: ''
+        });
+      } else {
+        alert(result.message || 'Error al enviar el formulario');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error de conexión. Por favor, intenta de nuevo.');
+    }
   };
 
   return (

@@ -4,7 +4,7 @@ const BenefitsSection = () => {
   const benefits = [
     {
       icon: '⚡',
-      title: 'Soft Skills',
+      title: 'Habilidades',
       description: 'Desarrollo de competencias técnicas y blandas esenciales para el éxito profesional en contaduría'
     },
     {

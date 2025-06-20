@@ -1,70 +1,211 @@
-# Getting Started with Create React App
+# 🚀 CEDET HEZA - Centro de Desarrollo de Talento
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> **Plataforma web moderna para conectar estudiantes de contaduría con experiencia laboral real**
 
-## Available Scripts
+![React](https://img.shields.io/badge/React-18.0+-blue.svg)
+![Node.js](https://img.shields.io/badge/Node.js-22.0+-green.svg)
+![Express](https://img.shields.io/badge/Express-4.18+-lightgrey.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-In the project directory, you can run:
+## 📖 Sobre el Proyecto
 
-### `npm start`
+CEDET HEZA es una plataforma diseñada específicamente para **estudiantes de contaduría pública** que buscan experiencia laboral real. Conectamos talento joven con empresas aliadas a través de:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 💼 **Experiencia laboral real** - Proyectos con empresas reales
+- 👥 **Mentores expertos** - Acompañamiento profesional personalizado
+- 🏆 **Certificaciones** - 18 certificaciones en CONTPAQi disponibles
+- 🎯 **Alto índice de empleabilidad** - 92% de egresados consiguen empleo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Características
 
-### `npm test`
+### 🎨 **Frontend Moderno**
+- **React 19** con diseño juvenil y atractivo
+- **Responsive Design** - Perfecto en móvil y desktop
+- **Animaciones suaves** con Framer Motion
+- **Formularios integrados** - Registro súper accesible
+- **Diseño UX optimizado** para generación Z
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ⚡ **Backend Robusto**
+- **Node.js + Express** - API REST simple y eficiente
+- **Sistema de registros** - Guardado en archivos JSON
+- **Notificaciones automáticas** - Email al administrador
+- **Validación de datos** - Seguridad en todos los formularios
+- **CORS configurado** - Comunicación segura frontend-backend
 
-### `npm run build`
+## 🛠️ Instalación y Uso
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **Requisitos Previos**
+- Node.js 18.0+ 
+- npm 8.0+
+- Git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Instalación Rápida**
+```bash
+# Clonar el repositorio
+git clone https://github.com/tuusuario/cedet-heza.git
+cd cedet-heza
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Instalar dependencias
+npm install
 
-### `npm run eject`
+# Configurar email (opcional)
+cp server/config.example.js server/config.js
+# Editar server/config.js con tus credenciales
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Ejecutar en desarrollo
+npm run dev
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **Comandos Disponibles**
+```bash
+# Desarrollo completo (Backend + Frontend)
+npm run dev
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Solo Frontend (React)
+npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Solo Backend (Express)
+npm run server
 
-## Learn More
+# Build de producción
+npm run build
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Probar build de producción
+npm install -g serve
+serve -s build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🌐 URLs del Proyecto
 
-### Code Splitting
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:5000
+- **Test API**: http://localhost:5000/api/test
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📁 Estructura del Proyecto
 
-### Analyzing the Bundle Size
+```
+cedet/
+├── public/                 # Archivos estáticos
+│   ├── images/            # Imágenes del sitio
+│   └── index.html         # HTML principal
+├── src/                   # Código fuente React
+│   ├── components/        # Componentes reutilizables
+│   ├── pages/            # Páginas de la aplicación
+│   └── App.js            # Componente principal
+├── server/               # Backend Node.js
+│   ├── config.js         # Configuración del servidor
+│   ├── server.js         # Servidor Express
+│   └── registros/        # Registros guardados (JSON)
+└── build/                # Build de producción
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🎯 Funcionalidades
 
-### Making a Progressive Web App
+### ✅ **Implementadas**
+- [x] **Formulario de registro de estudiantes** - Integrado en sección principal
+- [x] **Inscripción a talleres** - Modal funcional con validación
+- [x] **Sistema de guardado** - Archivos JSON organizados por fecha
+- [x] **Notificaciones por email** - Automáticas al administrador
+- [x] **Diseño responsive** - Optimizado para todos los dispositivos
+- [x] **API REST** - Endpoints seguros y documentados
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 🎨 **Páginas Disponibles**
+- **Inicio** - Hero + Formulario integrado + Información
+- **Talleres** - Lista de talleres con inscripción modal
+- **Nosotros** - Historia y misión de CEDET HEZA
+- **Bitácora** - Blog y noticias
+- **Conferencias** - Galería de eventos
 
-### Advanced Configuration
+## 🔧 Configuración
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### **Email (Opcional)**
+Para recibir notificaciones por email, edita `server/config.js`:
 
-### Deployment
+```javascript
+module.exports = {
+  email: {
+    host: 'smtp.gmail.com',
+    auth: {
+      user: 'tu-email@gmail.com',
+      pass: 'tu-contraseña-de-aplicacion'
+    }
+  },
+  adminEmail: 'admin@cedet-heza.com'
+};
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### **Variables de Entorno (Producción)**
+```bash
+NODE_ENV=production
+PORT=5000
+FRONTEND_URL=https://tu-dominio.com
+```
 
-### `npm run build` fails to minify
+## 📊 API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### **Registro de Estudiantes**
+```http
+POST /api/registro-estudiante
+Content-Type: application/json
+
+{
+  "nombre": "Juan Pérez",
+  "email": "juan@email.com",
+  "telefono": "+52 33 1234 5678",
+  "universidad": "Universidad de Guadalajara",
+  "semestre": "7",
+  "mensaje": "Quiero formar parte de HEZA"
+}
+```
+
+### **Inscripción a Talleres**
+```http
+POST /api/inscripcion-taller
+Content-Type: application/json
+
+{
+  "nombre": "María García",
+  "email": "maria@email.com",
+  "telefono": "+52 33 8765 4321",
+  "taller_id": 1,
+  "taller_nombre": "Taller de Declaraciones Anuales"
+}
+```
+
+## 🚀 Despliegue
+
+### **Frontend (Netlify/Vercel)**
+```bash
+npm run build
+# Subir carpeta build/ a tu servicio preferido
+```
+
+### **Backend (Heroku/Railway)**
+```bash
+# Configurar variables de entorno
+# Desplegar server/ con Node.js
+```
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📧 Contacto
+
+**CEDET HEZA** - Centro de Desarrollo de Talento
+
+- 🌐 **Web**: [cedet-heza.com](https://cedet-heza.com)
+- 📧 **Email**: contacto@cedet-heza.com
+- 📱 **Instagram**: [@heza.cedet](https://www.instagram.com/heza.cedet/)
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+---
+
+**Desarrollado con ❤️ para la nueva generación de contadores**

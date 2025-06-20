@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Talleres = () => {
+  const [modalAbierto, setModalAbierto] = useState(false);
+  const [tallerSeleccionado, setTallerSeleccionado] = useState(null);
+  const [datosInscripcion, setDatosInscripcion] = useState({
+    nombre: '',
+    email: '',
+    telefono: ''
+  });
+
   const talleres = [
     {
       id: 1,
@@ -18,6 +26,58 @@ const Talleres = () => {
 
     },
   ];
+
+  const abrirModal = (taller) => {
+    setTallerSeleccionado(taller);
+    setModalAbierto(true);
+  };
+
+  const cerrarModal = () => {
+    setModalAbierto(false);
+    setTallerSeleccionado(null);
+    setDatosInscripcion({
+      nombre: '',
+      email: '',
+      telefono: ''
+    });
+  };
+
+  const manejarCambio = (e) => {
+    setDatosInscripcion({
+      ...datosInscripcion,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const manejarInscripcion = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await fetch('http://localhost:5000/api/inscripcion-taller', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...datosInscripcion,
+          taller_id: tallerSeleccionado.id,
+          taller_nombre: tallerSeleccionado.titulo
+        })
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        alert(result.message);
+        cerrarModal();
+      } else {
+        alert(result.message || 'Error al procesar la inscripción');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error de conexión. Por favor, intenta de nuevo.');
+    }
+  };
 
   return (
     <div className="talleres-page">
@@ -46,12 +106,73 @@ const Talleres = () => {
                   <span><i className="fas fa-calendar"></i> {taller.fecha}</span>
                   <span><i className="fas fa-clock"></i> {taller.horario}</span>
                 </div>
-                <button className="btn-inscribirse">Inscribirse</button>
+                <button 
+                  className="btn-inscribirse"
+                  onClick={() => abrirModal(taller)}
+                >
+                  Inscribirse
+                </button>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Modal de Inscripción */}
+      {modalAbierto && (
+        <div className="modal-overlay" onClick={cerrarModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Inscribirse a: {tallerSeleccionado?.titulo}</h3>
+              <button className="btn-cerrar" onClick={cerrarModal}>&times;</button>
+            </div>
+            
+            <form onSubmit={manejarInscripcion} className="form-inscripcion">
+              <div className="form-group">
+                <label>Nombre completo *</label>
+                <input
+                  type="text"
+                  name="nombre"
+                  value={datosInscripcion.nombre}
+                  onChange={manejarCambio}
+                  required
+                />
+              </div>
+              
+              <div className="form-group">
+                <label>Email *</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={datosInscripcion.email}
+                  onChange={manejarCambio}
+                  required
+                />
+              </div>
+              
+              <div className="form-group">
+                <label>Teléfono *</label>
+                <input
+                  type="tel"
+                  name="telefono"
+                  value={datosInscripcion.telefono}
+                  onChange={manejarCambio}
+                  required
+                />
+              </div>
+              
+              <div className="modal-buttons">
+                <button type="button" className="btn-cancelar" onClick={cerrarModal}>
+                  Cancelar
+                </button>
+                <button type="submit" className="btn-confirmar">
+                  Confirmar Inscripción
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       <style jsx>{`
         .talleres-page {
@@ -131,6 +252,152 @@ const Talleres = () => {
 
         .btn-inscribirse:hover {
           background: var(--primary-dark);
+        }
+
+        /* Estilos del Modal */
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.7);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+        }
+
+        .modal-content {
+          background: white;
+          padding: 0;
+          border-radius: 15px;
+          width: 90%;
+          max-width: 500px;
+          max-height: 80vh;
+          overflow-y: auto;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.5rem;
+          border-bottom: 1px solid #eee;
+          background: var(--primary-teal);
+          color: white;
+          border-radius: 15px 15px 0 0;
+        }
+
+        .modal-header h3 {
+          margin: 0;
+          font-size: 1.2rem;
+        }
+
+        .btn-cerrar {
+          background: none;
+          border: none;
+          color: white;
+          font-size: 1.5rem;
+          cursor: pointer;
+          padding: 0;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          transition: background 0.3s ease;
+        }
+
+        .btn-cerrar:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }
+
+        .form-inscripcion {
+          padding: 2rem;
+        }
+
+        .form-group {
+          margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+          color: var(--primary-dark);
+        }
+
+        .form-group input {
+          width: 100%;
+          padding: 0.8rem;
+          border: 2px solid #eee;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+          border-color: var(--primary-teal);
+          outline: none;
+        }
+
+        .modal-buttons {
+          display: flex;
+          gap: 1rem;
+          justify-content: flex-end;
+          margin-top: 2rem;
+        }
+
+        .btn-cancelar {
+          background: #ccc;
+          color: #666;
+          border: none;
+          padding: 0.8rem 1.5rem;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background 0.3s ease;
+        }
+
+        .btn-cancelar:hover {
+          background: #bbb;
+        }
+
+        .btn-confirmar {
+          background: var(--primary-teal);
+          color: white;
+          border: none;
+          padding: 0.8rem 1.5rem;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 600;
+          transition: background 0.3s ease;
+        }
+
+        .btn-confirmar:hover {
+          background: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+          .modal-content {
+            width: 95%;
+            margin: 1rem;
+          }
+
+          .form-inscripcion {
+            padding: 1.5rem;
+          }
+
+          .modal-buttons {
+            flex-direction: column;
+          }
+
+          .btn-cancelar,
+          .btn-confirmar {
+            width: 100%;
+          }
         }
       `}</style>
     </div>
