@@ -53,7 +53,11 @@ const Talleres = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://localhost:5000/api/inscripcion-taller', {
+      const apiUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://api.cedet.heza.com.mx/api/inscripcion-taller'
+        : 'http://localhost:5000/api/inscripcion-taller';
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -24,7 +24,11 @@ const AboutSection = () => {
     setEnviando(true);
     
     try {
-      const response = await fetch('http://localhost:5000/api/registro-estudiante', {
+      const apiUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://api.cedet.heza.com.mx/api/registro-estudiante'
+        : 'http://localhost:5000/api/registro-estudiante';
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
